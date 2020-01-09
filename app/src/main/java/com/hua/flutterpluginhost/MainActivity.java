@@ -1,15 +1,11 @@
 package com.hua.flutterpluginhost;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import android.content.ComponentName;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import io.flutter.embedding.android.FlutterActivity;
-import io.flutter.embedding.android.FlutterFragment;
-import io.flutter.embedding.engine.FlutterEngineCache;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(
                     FlutterActivity
                             .withNewEngine()
-                            .initialRoute("/home")
+                            .initialRoute("home")
                             .build(this)
             );
         });
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(
                     FlutterActivity
                             .withNewEngine()
-                            .initialRoute("/page2")
+                            .initialRoute("page2")
                             .build(this)
                             .setClass(this,FlutterHostActivity.class)
             );
@@ -47,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
             startActivity(FlutterActivity
                     .withCachedEngine("flutter")
                     .build(this));
+        });
+        btnToken.setOnClickListener(v -> {
+            startActivity(
+                    FlutterActivity
+                            .withNewEngine()
+                            .initialRoute("home?hello=world")
+                            .build(this)
+                            .putExtra("background_mode","transparent")
+//                            .setClass(this,FlutterHostActivity.class)
+            );
         });
     }
 }
